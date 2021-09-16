@@ -1,0 +1,12 @@
+{% extends 'emails/base.text.twig' %}
+
+{% block titre %}Activation de votre compte INTRASSO :{% endblock %}
+
+{% block contenu %}
+{% autoescape false %}
+
+Nous vous informons de l'activation de votre compte adhérent.
+INTRASSO est accesssible en cliquant sur le lien suivant : {{ lienIntrasso }}
+
+{% endautoescape %}
+{% endblock %}

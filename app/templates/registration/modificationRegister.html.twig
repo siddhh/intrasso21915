@@ -1,0 +1,104 @@
+{% extends 'base.menu.html.twig' %}
+
+{% block title %}
+Incription Intrasso
+{% endblock %}
+
+{% block contenu %}
+<container>
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    {% for flashError in app.flashes('errors') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    {% for flashError in app.flashes('success') %}
+        <div class="alert alert alert-success" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <div class="text-center">
+            <a href="/"><img src="{{ asset('assets/img/intrasso_inscription.png') }}"
+                style="width: 100px;" alt="logo Intrasso_inscription"></a>
+    </div>
+    
+    <div class="text-center">
+        <h2>Inscription adhérent Intrasso</h2>
+    </div>
+
+   {# Form #}
+    <main role="main">
+        <div class="lead mx-auto" style="width: 800px;">
+        {{ form_start(registrationForm) }}
+            
+            <!--Courriel-->
+            <div class="form-group row" id="email">
+                {{ form_label(registrationForm.email, 'Courriel', {'label_attr': {'class': 'col-4 col-form-label ' }}) }}
+                <div class="col-4">
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control '}}) }}
+                </div>
+            </div>
+
+            <!--Prenom-->
+            <div class="form-group row" id="prenom">
+                {{ form_label(registrationForm.prenom, 'Prenom', {'label_attr': {'class': 'col-4 col-form-label ' }}) }}
+                <div class="col-4">
+                    {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control '}}) }}
+                </div>
+            </div>
+
+            <!--Nom-->
+            <div class="form-group row" id="nom">
+                {{ form_label(registrationForm.nom, 'Nom', {'label_attr': {'class': 'col-4 col-form-label ' }}) }}
+                <div class="col-4">
+                    {{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control '}}) }}
+                </div>
+            </div>
+   
+            <!--Roles-->
+            <div class="form-group row" id="roles">
+                {{ form_label(registrationForm.roles, 'Roles', {'label_attr': {'class': 'col-4 col-form-label'}}) }}
+                <div class="col-4">
+                    {{ form_widget(registrationForm.roles, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <!--Nbre emprunts possible-->
+            <div class="form-group row" id="nbrEmpruntPossible">
+                {{ form_label(registrationForm.nbrEmpruntPossible, 'Nombre  d\'emprunts possible', {'label_attr': {'class': 'col-4 col-form-label ' }}) }}
+                <div class="col-4">
+                    {{ form_widget(registrationForm.nbrEmpruntPossible, {'attr': {'class': 'form-control '}}) }}
+                </div>
+            </div>
+
+            <!--Vérification mail-->
+            <div class="form-group row " id="isVerified">
+                {{ form_label(registrationForm.isVerified, 'Vérification du mail', {'label_attr': {'class': 'col-4 col-form-label ' }}) }}
+                <div class="col-4">
+                    {{ form_widget(registrationForm.isVerified, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            
+            <!--Actif-->
+            <div class="form-group row " id="actif">
+                {{ form_label(registrationForm.actif, 'Actif', {'label_attr': {'class': 'col-4 col-form-label ' }}) }}
+                <div class="col-4">
+                    {{ form_widget(registrationForm.actif, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            
+             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+            
+            <!-- Validation-->
+            <div>
+                <div>
+                    <button class="btn btn-primary" type="submit">Valider</button>
+                </div>
+            </div>
+        {{ form_end(registrationForm) }}
+    </main>
+</container>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/menu.js') }}"></script>
+{% endblock %}
