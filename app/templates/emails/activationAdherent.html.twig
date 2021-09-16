@@ -1,0 +1,30 @@
+{% extends 'emails/base.html.twig' %}
+
+{% block titre %} Activation de votre compte INTRASSO :{% endblock %}
+
+{% block contenu %}
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td width="600" style="width: 600px;">
+                        <table class="email-interieur">
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Nous vous informons de l'activation de votre compte adhérent.</p>
+                                    <p>INTRASSO est accesssible en cliquant sur le lien suivant :<br />
+                                        <a href="{{ lienIntrasso }}">Se connecter à INTRASSO</a> ({{ lienIntrasso }})</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+{% endblock %}

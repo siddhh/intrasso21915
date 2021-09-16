@@ -1,0 +1,103 @@
+{% extends 'base.menu.html.twig' %}
+
+{% block title %}
+Liste auteurs Intrasso 
+{% endblock %}
+
+{% block contenu %}
+        <div class="form-group row">
+            <h5 class="form-group col-10">Liste des auteurs</h5>
+            <a href="{{ path('gestion-auteur-creer') }}"
+            class="btn btn-primary  col-2">Créer un auteur</a>
+        </div>
+
+        {# Form #}
+        {{ form_start(form) }}
+
+            <div class="form-group row" id="vuePredefinie">
+                {{ form_label(form.vuePredefinie, 'Choisissez une vue :', {'label_attr': {'class': 'col-2 col-form-vuePredefinie '}}) }}
+                <div class="col-4">
+                    {{ form_widget(form.vuePredefinie, {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-errors">
+                        {{ form_errors(form.vuePredefinie) }}
+                    </div>
+                </div>
+            </div>
+
+            {# 
+            <div class="form-group row" id="nom">
+                {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'col-2 col-form-label '}}) }}
+                <div class="col-4">
+                    {{ form_widget(form.nom, {'attr': {'class': 'form-control select-picker'}}) }}
+                    <div class="form-errors">
+                        {{ form_errors(form.nom) }}
+                    </div>
+                </div>
+            </div> #}
+
+            {# <div class="form-group row" id="sansSupprimer">
+                {{ form_label(form.sansSupprimer, 'Ne pas afficher les composants archivés', {'label_attr': {'class': 'col-2 col-form-label '}}) }}
+                <div class="col-10">
+                    {{ form_widget(form.sansSupprimer, {'attr': {'class': 'filled-in '}}) }}
+                </div>
+            </div> #}
+
+            <!--BOUTONS-->
+            <div class="form-group row" role="toolbar">
+                <!--Annulation-->
+                <div class="col-4">
+                    <a href="{{ path('accueil') }}" type="button" class="btn btn-secondary">Annuler</a>
+                </div>
+                
+                <!--Supprimer-->
+                <div class="col-4">
+                    <button type="button" class="btn btn-danger supprimer">Supprimer</button>
+                </div>
+            </div>
+
+        {{ form_end(form) }}
+    
+    {# Tableau des résultats #}
+    <div class="page-list">
+        <table id="tableau-resultats" class="table mt-5 checkall-container">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Date de suppression</th>
+                    <th scope="col"><input style="display:none;" type="checkbox" value="1" class="checkall" checked="null"/></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="4" class="table-empty" style="display: none;">Aucun résultat n'a été trouvé.</td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="table-loading" style="display: none;">Chargement des données en cours ...</td>
+                </tr>
+            </tbody>
+        </table>
+     </div>
+     
+    {# Modal confirmation de suppression d'une valeur #}
+    <div class="modal fade" id="confirmationSuppressionModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Les auteurs cochés vont être supprimés.</p>
+                    <p>Souhaitez-vous continuer ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Oui</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/form.js') }}"></script>
+    <script src="{{ asset('assets/js/auteur/listing.js') }}" type="text/javascript"></script>
+{% endblock %}

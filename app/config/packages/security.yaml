@@ -1,0 +1,50 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+        App\Entity\User1:
+            algorithm: auto
+
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # utilisé pour recharger l'utilisateur à partir de la session et
+        # d'autres fonctionnalités (par exemple, switch_user) 
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+        # used to reload user from session & other features (e.g. switch_user)
+        # used to reload user from session & other features (e.g. switch_user)
+        # used to reload user from session & other features (e.g. switch_user)
+        # used to reload user from session & other features (e.g. switch_user)
+        
+    # utilisé pour recharger l'utilisateur à partir de la session et
+    # d'autres fonctionnalités (par exemple, switch_user) 
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: lazy
+            provider: app_user_provider
+            guard:
+                authenticators:
+                    - App\Security\ConnexionAuthenticator
+            logout:
+                # path: deconnexion
+                target: app_login
+                # where to redirect after logout
+                # target: app_any_route
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Un moyen simple de contrôler l'accès pour de grandes sections de votre site 
+    # Remarque: Seul le * premier * contrôle d'accès correspondant sera utilisé 
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_USER }

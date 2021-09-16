@@ -1,0 +1,189 @@
+{% extends 'base.menu.html.twig' %}
+
+{% block title %}
+Incription article Intrasso
+{% endblock %}
+
+{% block contenu %}
+<container>
+
+    {% for flashError in app.flashes('success') %}
+        <div class="alert alert alert-success" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    {% for flashError in app.flashes('danger') %}
+        <div class="alert alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="text-center">
+        <h2>Inscription Nouvel Article Intrasso</h2>
+    </div>
+
+   {# Form #}
+    <main role="main">
+        <div class="lead mx-auto" style="width: 800px;">
+            <div class="page-label">
+                {{ form_start(form) }}
+
+                    {% if article is defined %}
+                        {% if article.image is not null %}
+                            <div class="text-center" >
+                                <img src="/assets/img/{{ article.image }}" alt="Pochette" width="150" style="border-style: inset; border-color: purple;">
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    <div class="form-group row" id="image">
+                        {{ form_label(form.image, 'Couverture', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.image.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{form_widget(form.image)}}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row" id="natures">
+                        {{ form_label(form.natures, 'Natures', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.natures.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{ form_widget(form.natures, {'attr': {'class': 'form-control ' ~ (form.natures.vars.valid ? '' : 'form-control-error')}}) }}
+                            <div class="form-errors">
+                                {{ form_errors(form.natures) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" id="genresBis">
+                        {{ form_label(form.genresBis, 'Genres', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.genresBis.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{ form_widget(form.genresBis, {'attr': {'class': 'form-control ' ~ (form.genresBis.vars.valid ? '' : 'form-control-error')}}) }}
+                            <div class="form-errors">
+                                {{ form_errors(form.genresBis) }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row" id="titre">
+                        {{ form_label(form.titre, 'Titre', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.titre.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{ form_widget(form.titre, {'attr': {'class': 'form-control ' ~ (form.titre.vars.valid ? '' : 'form-control-error')}}) }}
+                            <div class="form-errors">
+                                {{ form_errors(form.titre) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" id="commentaire">
+                        {{ form_label(form.commentaire, 'Commentaire', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.commentaire.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{ form_widget(form.commentaire, {'attr': {'class': 'form-control ' ~ (form.commentaire.vars.valid ? '' : 'form-control-error')}}) }}
+                            <div class="form-errors">
+                                {{ form_errors(form.commentaire) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" id="auteurs">
+                        {{ form_label(form.auteurs, 'Auteur', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.auteurs.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{ form_widget(form.auteurs, {'attr': {'class': 'form-control ' ~ (form.auteurs.vars.valid ? '' : 'form-control-error')}}) }}
+                            <div class="form-errors">
+                                {{ form_errors(form.auteurs) }}
+                            </div>
+                        </div>
+                        <div class="col-2">
+                                <a href="{{ path('gestion-auteur-creer') }}" type="button" class="btn btn-secondary">Ajout d'un auteur</a>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row" id="langages">
+                        {{ form_label(form.langages, 'Langages', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.langages.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{ form_widget(form.langages, {'attr': {'class': 'form-control ' ~ (form.langages.vars.valid ? '' : 'form-control-error')}}) }}
+                            <div class="form-errors">
+                                {{ form_errors(form.langages) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" id="proprietaire">
+                        {{ form_label(form.proprietaire, 'Proprietaire', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.proprietaire.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{ form_widget(form.proprietaire, {'attr': {'class': 'form-control ' ~ (form.proprietaire.vars.valid ? '' : 'form-control-error')}}) }}
+                            <div class="form-errors">
+                                {{ form_errors(form.proprietaire) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" id="emprunteur" {% if not article is defined or article.estEmprunte == false %} style="display:none;"{% endif %}>
+                        {{ form_label(form.emprunteur, 'Emprunteur', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.emprunteur.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{ form_widget(form.emprunteur, {'attr': {'class': 'form-control ' ~ (form.emprunteur.vars.valid ? '' : 'form-control-error')}}) }}
+                            <div class="form-errors">
+                                {{ form_errors(form.emprunteur) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" id="dateRestitution" {% if not article is defined or article.estEmprunte == false %} style="display:none;"{% endif %}>
+                        {{ form_label(form.dateRestitution, 'Date restitution', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.dateRestitution.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{ form_widget(form.dateRestitution, {'attr': {'class': 'form-control form-datepicker' ~ (form.dateRestitution.vars.valid ? '' : 'form-control-error')}}) }}
+                            <div class="form-errors">
+                                {{ form_errors(form.dateRestitution) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    
+                    <!--BOUTONS-->
+                    <div class="form-group row" role="toolbar">
+                            
+                            <!--Annulation-->
+                            <div class="col-3">
+                                <a href="javascript:history.back();" type="button" class="btn btn-secondary">Annuler</a>
+                            </div>
+                            
+                            <!--Restituer-->
+                            {% if article is defined and article.estEmprunte == true %}
+                            <div class="col-3">
+                                <a href="{{ path('gestion-article-restituer', {article: article.id }) }}" type="button" class="btn btn-success">Restituer</a>
+                            </div>
+                            {% endif %}
+
+                            <!--Restituer-->
+                            {% if article is defined %}
+                            <div class="col-3">
+                                <a href="{{ path('gestion-ListeHistoriqueArticle', {article: article.id }) }}" type="button" class="btn btn-info">Historique</a>
+                            </div>
+                            {% endif %}
+
+                            <!--Emprunter-->
+                            {% if article is defined and article.estEmprunte == false and app.user.nbrEmpruntPossible != app.user.nbreEmpruntEnCours %}
+                            <div class="col-3">
+                                <a href="{{ path('gestion-article-emprunter', {article: article.id }) }}" type="button" class="btn btn-warning">Emprunter</a>
+                            </div>
+                            {% endif %}
+
+                            <!--Enregistrer-->
+                            {% if is_granted('ROLE_ADMIN') or not article is defined or ( article is defined and app.user == article.Proprietaire ) %}
+                            <div class="col-3">
+                                {% block boutons %}
+                                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                {% endblock %}    
+                            </div>    
+                            {% endif %}
+                            
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </main>
+</container>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {# <script src="{{ asset('assets/js/menu.js') }}"></script> #}
+    <script src="{{ asset('assets/js/article/creationArticle.js') }}"></script>
+{% endblock %}
