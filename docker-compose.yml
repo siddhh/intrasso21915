@@ -44,11 +44,7 @@ services:
 
   db:
     image: postgres:13.2-alpine
-<<<<<<< HEAD
     container_name: ${PROJECT_NAME:-intrasso4bis}-dev_db
-=======
-    container_name: ${PROJECT_NAME:-intrasso4}-dev_db
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     restart: always
     command: ["postgres", "-c", "log_min_duration_statement=2000"]
     environment:
