@@ -23,8 +23,13 @@ class HistoriqueArticleRepository extends ServiceEntityRepository
     *  Retourne l'historique d'un article
     * @return HistoriqueArticle[]
     */
+<<<<<<< HEAD
 
     public function historiquePourUnArticle(int $idArticle): array
+=======
+    
+    public function historiquePourUnArticle (int $idArticle): array
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     {
         $query = $this->createQueryBuilder('h');
         $query
@@ -37,21 +42,37 @@ class HistoriqueArticleRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
 
         // $query = $this->getEntityManager()->createQuery(
+<<<<<<< HEAD
         //     'SELECT
+=======
+        //     'SELECT 
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         //     FROM App\Entity\HistoriqueArticle h
         //     WHERE h.article = :idArticle')->setParameter('idArticle', $idArticle);
 
         // return $query->getResult();
+<<<<<<< HEAD
     }
 
 
 
+=======
+
+    }
+
+
+    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     // /**
     // *  Retourne la liste des articles empruntés
     // * @return HistoriqueArticle[]
     // */
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     // public function listeArticlesEmpruntes(?int $adherentCourant): array
     // {
     //     $query = $this->createQueryBuilder('h');
@@ -65,7 +86,11 @@ class HistoriqueArticleRepository extends ServiceEntityRepository
     //     return $query->getQuery()->getResult();
 
     //     // $query = $this->getEntityManager()->createQuery(
+<<<<<<< HEAD
     //     //     'SELECT
+=======
+    //     //     'SELECT 
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     //     //     FROM App\Entity\HistoriqueArticle h
     //     //     WHERE h.article = :idArticle')->setParameter('idArticle', $idArticle);
 

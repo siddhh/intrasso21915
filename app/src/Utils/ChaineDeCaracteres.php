@@ -10,7 +10,11 @@ abstract class ChaineDeCaracteres
      * @param string $entre
      * @return string
      */
+<<<<<<< HEAD
     public static function mbUcwords(string $entre): string
+=======
+    public static function mbUcwords(string $entre) : string
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     {
         $liste = explode("-", $entre);
         foreach ($liste as &$value) {
@@ -49,7 +53,11 @@ abstract class ChaineDeCaracteres
      * @param string $nom
      * @return string
      */
+<<<<<<< HEAD
     public static function nomPrenom(string $nom, ?string $prenom): string
+=======
+    public static function nomPrenom(string $nom, ?string $prenom) : string
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     {
         // $listprenom = explode("-", $prenom);
         // foreach ($listprenom as $value) {
@@ -66,7 +74,11 @@ abstract class ChaineDeCaracteres
      * @param string $chaine
      * @return string
      */
+<<<<<<< HEAD
     public static function suppressionAccents(string $chaine): string
+=======
+    public static function suppressionAccents(string $chaine) : string
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     {
         return str_replace(
             array(
@@ -149,7 +161,11 @@ abstract class ChaineDeCaracteres
      *
      * @return string
      */
+<<<<<<< HEAD
     public static function periodesEnLectureHumaine(\DateTime $periodeDebut, \DateTime $periodeFin, bool $affichageAnnee = true, string $formatString = 'Du %s au %s'): string
+=======
+    public static function periodesEnLectureHumaine(\DateTime $periodeDebut, \DateTime $periodeFin, bool $affichageAnnee = true, string $formatString = 'Du %s au %s') : string
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     {
         // On initisalise quelques variables pour préparer notre affichage
         $premierTerme = null;
@@ -174,7 +190,11 @@ abstract class ChaineDeCaracteres
      * @param int $minutes
      * @return string
      */
+<<<<<<< HEAD
     public static function minutesEnLectureHumaineSimple(int $minutes): string
+=======
+    public static function minutesEnLectureHumaineSimple(int $minutes) : string
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     {
         $heures = floor($minutes / 60);
         $minutes = $minutes % 60;

@@ -48,11 +48,19 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
+<<<<<<< HEAD
                         // longueur maximale autorisée par Symfony pour des raisons de sécurité
                         'max' => 4096,
                     ]),
                 ],
             ])
+=======
+                        // longueur maximale autorisée par Symfony pour des raisons de sécurité 
+                        'max' => 4096,
+                    ]),
+                ],
+            ])   
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         ;
         // Permet de convertir la valeur unique sélectionné dans la liste des roles en liste de roles utilisée par l'entité
         // $builder->get('roles')->addModelTransformer(new CallbackTransformer(

@@ -9,12 +9,22 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DocumentationService
 {
+<<<<<<< HEAD
     /**
      * Paramètrage de la génération du hash
      */
     public const HASH_ALGO = 'sha256';
     public const HASH_PREFIXE = '$Gesip2020';
     public const HASH_SUFFIXE = '0202piseG£';
+=======
+
+    /**
+     * Paramètrage de la génération du hash
+     */
+    const HASH_ALGO = 'sha256';
+    const HASH_PREFIXE = '$Gesip2020';
+    const HASH_SUFFIXE = '0202piseG£';
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
      * Liste des mimetypes acceptés pour la documentation

@@ -22,9 +22,16 @@ class AuteurRepository extends ServiceEntityRepository
     // /**
     //  * @return Auteur[] retourne tous les auteurs non supprimés
     //  */
+<<<<<<< HEAD
 
     public function listeAuteursNonSupprimés(): array
     {
+=======
+    
+    public function listeAuteursNonSupprimés(): array
+    {
+        
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         return $this->createQueryBuilder('a')
         ->where('a.dateSuppression IS NULL')
         ->getQuery()
@@ -35,11 +42,19 @@ class AuteurRepository extends ServiceEntityRepository
     // /**
     //  * @return Auteur[] retourne les auteurs en fonction de la vue choisie
     //  */
+<<<<<<< HEAD
 
     public function listeAuteurs(string $vueChoisie): array
     {
         $query = $this->createQueryBuilder('a');
 
+=======
+    
+    public function listeAuteurs( string $vueChoisie): array
+    {
+        $query = $this->createQueryBuilder('a');
+        
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         if ($vueChoisie == 1) {
             $query->andWhere('a.dateSuppression IS NULL')
             ->orderBy('a.dateSuppression', 'DESC');
@@ -48,7 +63,11 @@ class AuteurRepository extends ServiceEntityRepository
             $query->andWhere('a.dateSuppression IS NOT NULL')
             ->orderBy('a.dateSuppression', 'DESC');
         }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         //->where('a.dateSuppression IS NULL')
         //$query->where('a.dateSuppression IS NULL');
         //dd($query);
@@ -56,14 +75,25 @@ class AuteurRepository extends ServiceEntityRepository
     }
 
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     // /**
     //  * @return Auteur[] retourne tous les auteurs non supprimés
     //  */
+<<<<<<< HEAD
 
     public function listeAuteurSupprime(array $listeAuteurSupprime): array
     {
+=======
+    
+    public function listeAuteurSupprime(array $listeAuteurSupprime): array
+    {
+        
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         return $this->createQueryBuilder('a')
         ->where('a.id IN (:listeAuteurSupprime)')
         ->setParameter('listeAuteurSupprime', $listeAuteurSupprime)
@@ -72,7 +102,11 @@ class AuteurRepository extends ServiceEntityRepository
         ;
     }
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
 
 

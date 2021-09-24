@@ -54,4 +54,8 @@ class UserPromoteCommand extends Command
 
         return 0;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b

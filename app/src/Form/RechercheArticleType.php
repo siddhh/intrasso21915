@@ -31,7 +31,11 @@ class RechercheArticleType extends AbstractType
                 ],
                 'empty_data' => 0
             ])
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             ->add('auteurs', EntityType::class, [
                 'class' => Auteur::class,
                 'placeholder' => '',

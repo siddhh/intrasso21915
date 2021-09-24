@@ -10,6 +10,10 @@ use App\Entity\User;
 
 class AdherentController extends AbstractController
 {
+<<<<<<< HEAD
+=======
+    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
      * @Route(
      *      "/ajax/adherent/recherche",
@@ -27,6 +31,7 @@ class AdherentController extends AbstractController
             // 'nbrEmpruntPossible'    => $request->get('NbrEmpruntPossible'),
             // 'isVerified'            => $request->get('IsVerified'),
             // 'actif'                 => $request->get('Actif'),
+<<<<<<< HEAD
 
         ];
 
@@ -35,6 +40,16 @@ class AdherentController extends AbstractController
             //->findAll();
             ->listeAdherentsTous();
         //->listeAdherentsCriteres($tableauRecherche);
+=======
+            
+        ];
+
+            $resultat = $this->getDoctrine()
+            ->getRepository(User::class)
+            //->findAll();
+            ->listeAdherentsTous();
+            //->listeAdherentsCriteres($tableauRecherche);
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
         $reponse = [
             'recherche' => 'liste',
@@ -42,9 +57,15 @@ class AdherentController extends AbstractController
         ];
 
         foreach ($resultat as $adherent) {
+<<<<<<< HEAD
             if ($adherent->getDateSuppression()) {
                 $dateSuppression = $adherent->getDateSuppression()->format('d/m/Y');
             } else {
+=======
+            if ($adherent->getDateSuppression()){
+                $dateSuppression = $adherent->getDateSuppression()->format('d/m/Y');
+            } else { 
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
                 $dateSuppression = "-";
             }
             $retAdherent = [
@@ -59,7 +80,11 @@ class AdherentController extends AbstractController
                 'actif'                 => $adherent->getActif(),
                 'dateSuppression'       => $dateSuppression
             ];
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             $reponse['donnees'][] = $retAdherent;
         }
         return new JsonResponse($reponse);
@@ -87,9 +112,22 @@ class AdherentController extends AbstractController
             $entityManager->flush();
 
             return new JsonResponse(['statut' => $dateSupressionString]);
+<<<<<<< HEAD
         } else {
             return new JsonResponse(['statut' => 'ko']);
             ;
         }
     }
+=======
+
+        } else {
+            
+            return new JsonResponse(['statut' => 'ko']);;
+        }
+    }
+
+    
+
+
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 }

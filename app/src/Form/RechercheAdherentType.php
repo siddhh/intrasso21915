@@ -35,9 +35,15 @@ class RechercheAdherentType extends AbstractType
                     $choixRoles['Adhérent'] = 'ROLE_USER';
             }
         }
+<<<<<<< HEAD
 
         $builder
 
+=======
+        
+        $builder
+            
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             ->add('prenom', TextType::class, [
                 'required' => false,
             ])
@@ -53,7 +59,11 @@ class RechercheAdherentType extends AbstractType
 
             // ->add('roles', ChoiceType::class, [
             //     'choices' => $choixRoles,
+<<<<<<< HEAD
             //     'placeholder' => "",
+=======
+            //     'placeholder' => "",     
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             //     'mapped' => true,
             //     'multiple' => false,
             //     'required' => false,
@@ -69,10 +79,17 @@ class RechercheAdherentType extends AbstractType
             // ->add('actif', ChoiceType::class, [
             //     'required'      => false,
             //     'choices'       => [
+<<<<<<< HEAD
             //         'Tous' => null,
             //         'Oui' => true,
             //         'Non' => false,
 
+=======
+            //         'Tous' => null, 
+            //         'Oui' => true,
+            //         'Non' => false,
+                    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             //     ]
             // ])
         ;

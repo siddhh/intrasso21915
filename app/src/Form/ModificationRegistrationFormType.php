@@ -51,7 +51,11 @@ class ModificationRegistrationFormType extends AbstractType
             ])
             ->add('isVerified', CheckboxType::class, [
                 'disabled' => true,
+<<<<<<< HEAD
                 ])
+=======
+                ])   
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         ;
         // Permet de convertir la valeur unique sélectionné dans la liste des roles en liste de roles utilisée par l'entité
         $builder->get('roles')->addModelTransformer(new CallbackTransformer(

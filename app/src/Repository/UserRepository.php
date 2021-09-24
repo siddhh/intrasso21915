@@ -40,14 +40,22 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     // /**
     //  * @return User[] retourne tous les adhérents
     //  */
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     public function listeAdherentsTous()
     {
         return $this->createQueryBuilder('u')
             ->orderBy('u.dateSuppression', 'DESC')
             ->addOrderBy('u.isVerified', 'DESC')
             ->addOrderBy('u.actif', 'ASC')
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             ->getQuery()
             ->getResult()
         ;
@@ -89,7 +97,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $query = $this->createQueryBuilder('u')
         ->where('JSON_CONTAINS(u.roles, :roles) = 1')
         ->setParameter('roles', json_encode('ROLE_ADMIN'));
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         return $query->getQuery()->getResult();
     }
 
@@ -99,8 +111,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     public function listeAdherentsCriteres(array $tableauRecherche = null): array
     {
+<<<<<<< HEAD
         $query = $this->createQueryBuilder('u');
 
+=======
+
+        $query = $this->createQueryBuilder('u');
+       
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         if (!empty($tableauRecherche['prenom'])) {
             $query->andWhere('lower(u.prenom) LIKE :prenom');
             $query->setParameter('prenom', '%'.mb_strtolower($tableauRecherche['prenom']).'%');
@@ -120,8 +138,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             if ($tableauRecherche['roles'] == 'ROLE_ADMIN') {
                 $query->andWhere('JSON_CONTAINS(u.roles, :roles) = 1');
                 $query->setParameter('roles', json_encode($tableauRecherche['roles']));
+<<<<<<< HEAD
             } else {
                 $query->andWhere('JSON_CONTAINS(u.roles, :roles) = 1');
+=======
+            }
+                else { $query->andWhere('JSON_CONTAINS(u.roles, :roles) = 1');
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
                 $query->setParameter('roles', json_encode($tableauRecherche['roles']));
             }
         }
@@ -140,7 +163,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             $query->andWhere('u.actif =:actif');
             $query->setParameter('actif', $tableauRecherche['actif']);
         }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         //$query->orderby('u.nom', 'ASC');
 
         return $query->getQuery()->getResult();
@@ -150,22 +177,35 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     *  Ajoute un emprunt au compteur d'un adhérent
     * @return User[]
     */
+<<<<<<< HEAD
 
     public function nbreEmpruntEnCours(int $idUser): array
+=======
+    
+    public function nbreEmpruntEnCours (int $idUser): array
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     {
         $query = $this->createQueryBuilder('u');
         $query
             ->where('u.id = :id')
             ->setParameter('id', $idUser)
         ;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         return $query->getQuery()->getResult();
     }
 
     // /**
     //  * @return User[] retourne tous les adhérents en attente de validation
     //  */
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     public function listeAdherentsAttenteValidation(): array
     {
         return $this->createQueryBuilder('u')

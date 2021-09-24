@@ -21,7 +21,11 @@ class GenreController extends AbstractController
     /** @var EntityManagerInterface  */
     private $em;
 
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
      * Constructeur de la commande.
      * Permet notamment de récupérer dépendances
@@ -30,9 +34,16 @@ class GenreController extends AbstractController
 
     public function __construct(
         EntityManagerInterface $em
+<<<<<<< HEAD
     ) {
         $this->em = $em;
     }
+=======
+       
+        ) {
+            $this->em = $em;
+        }
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
      * @Route("/gestion/listeGenres", name="gestion-listeGenres")
@@ -44,13 +55,21 @@ class GenreController extends AbstractController
         return $this->render('gestion/listeGenres.html.twig', [
             'form' => $form->createView()
         ]);
+<<<<<<< HEAD
     }
+=======
+    } 
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
      * @Route("/gestion/genre/creer", name="gestion-genre-creer")
      */
     public function creerGenre(Request $request): Response
     {
+<<<<<<< HEAD
+=======
+        
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         $genre = new Genre();
         $form = $this->createForm(GenreType::class, $genre);
         $form->handleRequest($request);
@@ -58,12 +77,21 @@ class GenreController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($genre);
             $em->flush();
+<<<<<<< HEAD
 
             $this->addFlash(
                 'success',
                 "Genre ajouté."
             );
 
+=======
+            
+            $this->addFlash(
+                 'success',
+                 "Genre ajouté."
+            ); 
+           
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             return $this->redirectToRoute('accueil');
         }
 
@@ -98,5 +126,11 @@ class GenreController extends AbstractController
             'form'      => $form->createView(),
             'genre'   => $genre
         ]);
+<<<<<<< HEAD
     }
+=======
+    
+    }
+    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 }

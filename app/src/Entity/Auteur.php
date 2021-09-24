@@ -11,6 +11,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 /**
  * @ORM\Entity(repositoryClass=AuteurRepository::class)
  * @ORM\HasLifecycleCallbacks()

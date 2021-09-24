@@ -10,6 +10,10 @@ use App\Entity\Genre;
 
 class GenreController extends AbstractController
 {
+<<<<<<< HEAD
+=======
+
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
      * @Route(
      *      "/ajax/genre/recherche",
@@ -19,6 +23,7 @@ class GenreController extends AbstractController
      */
     public function listeGenres(Request $request)
     {
+<<<<<<< HEAD
         $tableauRecherche = [
             'label'                => $request->get('Label'),
             'natures'                => $request->get('Natures'),
@@ -26,6 +31,16 @@ class GenreController extends AbstractController
         $naturesLibelles = [];
 
         $resultat = $this->getDoctrine()
+=======
+        
+        $tableauRecherche = [
+            'label'                => $request->get('Label'),   
+            'natures'                => $request->get('Natures'),         
+        ];
+        $naturesLibelles = [];
+
+            $resultat = $this->getDoctrine()
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             ->getRepository(Genre::class)
             ->findAll();
 
@@ -45,13 +60,21 @@ class GenreController extends AbstractController
             ];
 
             $naturesLibelles = [];
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             $reponse['donnees'][] = $retGenre;
         }
         return new JsonResponse($reponse);
     }
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
 
     /**
@@ -70,8 +93,17 @@ class GenreController extends AbstractController
         $reponse = [];
 
         foreach ($resultat as $nature) {
+<<<<<<< HEAD
             $reponse[] = $nature->getId();
         }
         return new JsonResponse($reponse);
     }
+=======
+
+            $reponse[] = $nature->getId();
+        }
+        return new JsonResponse($reponse);
+
+    } 
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 }

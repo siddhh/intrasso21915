@@ -8,6 +8,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 /**
  * @ORM\Entity(repositoryClass=GenreRepository::class)
  * @UniqueEntity(

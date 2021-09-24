@@ -17,12 +17,20 @@ class RechercheAuteurType extends AbstractType
     {
         $builder
             ->add('vuePredefinie', ChoiceType::class, [
+<<<<<<< HEAD
                 'required'    => false,
+=======
+                'required'    => false, 
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
                 'choices'     => [
                     '1 - Auteurs non-Supprimés'               => "1",
                     '2 - Auteurs supprimés'                   => "2",
                     '3 - Auteurs supprimés  et non-supprimés' => "3",
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
                 ],
             ])
         ;

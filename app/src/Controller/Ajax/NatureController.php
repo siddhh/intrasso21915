@@ -10,6 +10,10 @@ use App\Entity\Nature;
 
 class NatureController extends AbstractController
 {
+<<<<<<< HEAD
+=======
+
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
      * @Route(
      *      "/ajax/nature/recherche",
@@ -19,6 +23,7 @@ class NatureController extends AbstractController
      */
     public function listeNatures(Request $request)
     {
+<<<<<<< HEAD
         $tableauRecherche = [
             'label'                => $request->get('Label'),
             'genres'               => $request->get('Genres'),
@@ -26,6 +31,16 @@ class NatureController extends AbstractController
         $genresLibelles = [];
 
         $resultat = $this->getDoctrine()
+=======
+        
+        $tableauRecherche = [
+            'label'                => $request->get('Label'),     
+            'genres'               => $request->get('Genres'),       
+        ];
+        $genresLibelles = [];
+
+            $resultat = $this->getDoctrine()
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             ->getRepository(Nature::class)
             ->findAll();
 
@@ -44,7 +59,11 @@ class NatureController extends AbstractController
                 'genres'           => $genresLibelles,
             ];
             $genresLibelles = [];
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             $reponse['donnees'][] = $retNature;
         }
 

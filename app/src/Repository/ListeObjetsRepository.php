@@ -27,8 +27,14 @@ class ListeObjetsRepository extends ServiceEntityRepository
      */
     public function listeArticlesCriteres(array $tableauRecherche = null): array
     {
+<<<<<<< HEAD
         $query = $this->createQueryBuilder('a');
 
+=======
+
+        $query = $this->createQueryBuilder('a');
+       
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         if (!empty($tableauRecherche['titre'])) {
             $query->andWhere('lower(a.tr) LIKE :titre');
             $query->setParameter('titre', '%'.mb_strtolower($tableauRecherche['prenom']).'%');
@@ -56,7 +62,11 @@ class ListeObjetsRepository extends ServiceEntityRepository
             $query->setParameter('estEmprunte', $tableauRecherche['estEmprunte']);
         }
 
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         //$query->orderby('a.nom', 'ASC');
 
         return $query->getQuery()->getResult();

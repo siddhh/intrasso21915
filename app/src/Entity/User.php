@@ -172,7 +172,11 @@ class User implements UserInterface
 
     /**
      * Le retour d'un sel n'est nécessaire que si vous n'utilisez pas un
+<<<<<<< HEAD
      * algorithme de hachage (par exemple bcrypt ou sodium) dans votre security.yaml.
+=======
+     * algorithme de hachage (par exemple bcrypt ou sodium) dans votre security.yaml. 
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
      *
      * @see UserInterface
      */
@@ -378,4 +382,8 @@ class User implements UserInterface
 
         return $this;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 }

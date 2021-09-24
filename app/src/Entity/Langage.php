@@ -24,7 +24,11 @@ class Langage
      */
     private $label;
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
      * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="langages")
@@ -33,6 +37,10 @@ class Langage
 
     public function __construct()
     {
+<<<<<<< HEAD
+=======
+       
+>>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         $this->articles = new ArrayCollection();
     }
 
