@@ -13,10 +13,6 @@ use Doctrine\ORM\Query\AST\Functions\FunctionNode;
  */
 class DateFormat extends FunctionNode
 {
-<<<<<<< HEAD
-=======
-
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
      * Holds the timestamp of the DATE_FORMAT DQL statement
      * @var $dateExpression
