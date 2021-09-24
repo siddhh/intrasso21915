@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header style="background-color: #d16c89;">
+        <div class="container">
+            <div class="row align-items-center">
+                
+                <!--LOGO-->
+                <div class="col-2">
+                    <a href="/"><img src="{{ asset('assets/img/intrasso.png') }}"
+                        style="width: 150px;" alt="logo Intrasso"></a>
+                </div>
+
+                <!--TEXTE-->
+                <div class="col-8 text-center">
+                    <h1><b>I.N.T.R.A.S.S.O</b></h1>
+                    {% if app.user %}
+                        <h6> Connecté en tant que : <b>{{ app.user.email }}</b> </h6>
+                        <h6> Vous pouvez encore emprunter <b>{{ app.user.nbrEmpruntPossible - app.user.nbreEmpruntEnCours }}</b> articles.
+                            {% if app.user.nbreEmpruntEnCours != 0 %}
+                            <a  href="#" class="articleEmpruntes">(Cf.Détail)</a>
+                            {% endif %}
+                        </h6>
+                        
+                    {% else %}
+                        <h6> Vous êtes anonyme</h6>
+                    {% endif %}
+                </div>                
+                
+                <!--DECONNEXION-->
+                <div class="col-2">
+                    <a href="{{ path('app_logout') }}" title="Déconnexion">
+                    <img class="float-right"
+                        width="40" heigth="40"
+                        src="{{ asset('assets/img/bouton_exit.png') }}"
+                        alt="déconnexion"></a>
+                </div>
+            </div>
+        </div>
+
+        {# Modal détail des emprunts #}
+        <div class="modal fade" id="detailArticleEmpruntesModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-l" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5>Article en cours d'emprunt :</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id='tableau-resultats-modal' class="table-responsive table-bordered">
+                        <thead>
+                            <tr class="item">
+                                <th class="col-2">Nature</th>
+                                <th class="col-2">Titre</th>
+                                <th class="col-2">Date de restitution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>        
+        </div>
+        {# <div class="modal fade" id="detailArticleEmpruntesModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>Etat de vos emprunt en cours : </p>
+                        <p>cliquer a l'exterieur de la fenetre pour en sortir.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Oui</button>
+                    </div>
+                </div>
+            </div>
+        </div> #}
+        {% for flashError in app.flashes('success') %}
+                <div class="alert alert alert-success" role="alert">{{ flashError }}</div>
+            {% endfor %}
+    </header>
+
+    <!--MENU-->
+    <nav class="bg-intrasso">
+        <div class="container">
+            <div class="row align-items-center">
+                
+                <!--Logo deconnexion-->
+                <div class="nav-item">
+                    <a href="{{ path('app_logout') }}" title="Déconnexion">
+                    <img class="float-left bg-intrasso" src="{{ asset('assets/img/bouton_exit.png') }}"
+                        alt="Déconnexion" width="40" heigth="40"></a>
+                </div>
+
+                <!--Menu pour tout le monde-->
+                <div class="nav-item">
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pour tous les utilisateurs
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('gestion-article-creer') }}">Ajout article</a>
+                            <a class="dropdown-item" href="{{ path('gestion-listeArticles') }}">Liste des articles</a>
+                            <a class="dropdown-item" href="#">C</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Menu role administrateur-->
+                {% if is_granted('ROLE_ADMIN') %}
+                <div class="nav-item">
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Administrateurs
+                        </a>
+                        <div class="dropdown-menu">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a class="dropdown-item" href="{{ path('gestion-adherent-creer') }}">Création utilisateurs</a>
+                                <a class="dropdown-item" href="{{ path('gestion-listeAdherents') }}">Liste des adhérents</a>
+                                <a class="dropdown-item" href="{{ path('gestion-auteur-creer') }}">Création auteurs</a>
+                                <a class="dropdown-item" href="{{ path('gestion-listeAuteurs') }}">Liste des auteurs</a>
+                                <a class="dropdown-item" href="{{ path('gestion-nature-creer') }}">Création nature</a>
+                                <a class="dropdown-item" href="{{ path('gestion-listeNatures') }}">Liste des natures</a>
+                                <a class="dropdown-item" href="{{ path('gestion-genre-creer') }}">Création genre</a>
+                                <a class="dropdown-item" href="{{ path('gestion-listeGenres') }}">Liste des genres</a>
+                            
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!--CONTENU-->
+    <main>
+        <div class="{{ (container_fluid is defined and container_fluid == true) ? "container-fluid" : 'container' }}">
+            <div class="row " style="background-color: #d16c89;">
+                <div class="col">
+                    {% block contenu %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/menu.js') }}"></script>
+{% endblock %}

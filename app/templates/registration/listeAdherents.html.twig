@@ -1,0 +1,132 @@
+{% extends 'base.menu.html.twig' %}
+
+{% block title %}
+Liste adhérents Intrasso 
+{% endblock %}
+
+{% block contenu %}
+        <div class="form-group row">
+            <h5 class="form-group col-6">Liste des adhérents</h5>
+            <a href="{{ path('gestion-adherent-creer') }}"
+                class="btn btn-primary  col-2">Créer un adhérent</a>
+        </div>
+
+        {# Form #}
+        {{ form_start(form) }}
+
+            <div class="form-group row" id="prenom">
+                {{ form_label(form.prenom, 'Prenom', {'label_attr': {'class': 'col-2 col-form-prenom '}}) }}
+                <div class="col-4">
+                    {{ form_widget(form.prenom, {'attr': {'class': 'form-control select-picker'}}) }}
+                    <div class="form-errors">
+                        {{ form_errors(form.prenom) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row" id="nom">
+                {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'col-2 col-form-label '}}) }}
+                <div class="col-4">
+                    {{ form_widget(form.nom, {'attr': {'class': 'form-control select-picker'}}) }}
+                    <div class="form-errors">
+                        {{ form_errors(form.nom) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row" id="email">
+                {{ form_label(form.email, 'Email', {'label_attr': {'class': 'col-2 col-form-label '}}) }}
+                <div class="col-4">
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control select-picker'}}) }}
+                    <div class="form-errors">
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+            </div>
+        
+            <!--BOUTONS-->
+                <!--Recherche-->
+                <div class="form-group row col-12" role="toolbar">
+                    <div class="col-2">
+                        <a href="{{ path('accueil') }}" type="button" class="btn btn-secondary">Page d 'accueil</a>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-warning activerTous">Activé tous les adhérents</button>
+                        {# <a href="{{ tee }}" type="button" class="btn btn-warning">Activé tous les adhérents</a> #}
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary recherche-adherent ">Recherche</button>
+                    </div>
+                </div>
+            
+            <!--Activation multiples-->
+
+
+        {{ form_end(form) }}
+
+    {# Tableau des résultats #}
+    <div class="page-list">
+        <table id="tableau-resultats" class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Balp</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">N.E.P (1)</th>
+                    <th scope="col">N.E.E (1)</th>
+                    <th scope="col">Email vérifié</th>
+                    <th scope="col">Actif</th>
+                    <th scope="col">Date suppression</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="4" class="table-empty" style="display: none;">Aucun résultat n'a été trouvé.</td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="table-loading" style="display: none;">Chargement des données en cours ...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {# Modal confirmation de suppression d'une valeur #}
+        <div class="modal fade" id="confirmationSuppressionModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>La valeur « <span class="label"></span> » va être supprimée.</p>
+                        <p>Souhaitez-vous continuer ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Oui</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Modal confirmation de validation de tous les ahérents en attente #}
+        <div class="modal fade" id="confirmationActiverTousModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>Les adhérents en attente d'activation vont être tous activés.</p>
+                        <p>Souhaitez-vous continuer ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Oui</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/form.js') }}"></script>
+    <script src="{{ asset('assets/js/adherent/listing.js') }}" type="text/javascript"></script>
+{% endblock %}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html style="background-color: cb6666   ;">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta charset="utf-8" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}" />
+    <link rel="icon apple-touch-icon-precomposed" href="{{ asset('assets/img/favicon-152.png') }}" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="{{ asset('assets/img/favicon-144.png') }}" />
+    {# <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/img/favicon-152.png') }}" />
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/img/favicon-144.png') }}" />
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/img/favicon-120.png') }}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/img/favicon-114.png') }}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/img/favicon-72.png') }}" />
+    <link rel="apple-touch-icon" href="{{ asset('assets/img/favicon-57.png') }}" /> #}
+
+        
+        <title>{% block title %}Intrasso{% endblock %}</title>
+        
+        {% block stylesheets %}
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" />
+        <style type="text/css">
+            .btn-primary {
+            border: 2px solid #312727;
+            background-color: #bc2323;
+            }
+            primary:hover { 
+            background-color:  #C70039;
+            border-color:  #581845;
+            color: #fff;
+            }
+
+            .btn-secondary {
+            border: 2px solid #312727;
+            background-color: #4a3d3d  ;
+            }
+
+            .bg-intrasso {
+            border: 4px solid #312727;
+            background-color: #803d6a;
+            }
+            
+            b {
+                color:  #facdff ;
+
+            }
+
+
+            .form-errors, .form-label-error
+            {
+                color: #facdff;
+
+            }
+
+            a {
+            color: #facdff ;
+            text-decoration: none;
+            background-color: transparent;
+            }
+
+            .page-list .table .checkall-box-handle.checkall-box-checked {
+            background: transparent;
+            }
+            
+        </style>
+        {% endblock %}
+    </head>
+
+    <body style="background-color: #d16c89;">
+        {# <div aria-live="polite" aria-atomic="true">
+            <div class="toast-container">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+                            <div class="toast-body mb-0 alert alert-{{ label }}">
+                                <p>{{ message|trans }}</p>
+                                <button type="button" class="close" data-dismiss="toast" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div> #}
+
+        <footer class="mt-5">
+            {# <div class="container-fluid">
+                <div class="row">
+                    <div class="col text-center text-secondary">
+                        {% block footer_msg %}
+                        Envoyez un courrier électronique au <a href="mailto:DGFiP SI-2A DME<bureau.si2a-dme@dgfip.finances.gouv.fr>,DGFiP SI-2A DME CS2<bureau.si2a-dme-cs2@dgfip.finances.gouv.fr>,DGFiP SI-2A DME CS1<bureau.si2a-dme-cs1@dgfip.finances.gouv.fr>,DGFiP SI-2A DME SOAE<bureau.si2a-dme-soae@dgfip.finances.gouv.fr>?subject=[GESIP] Problème de connexion au site">Bureau SI-2A DME</a> pour toute question ou remarque concernant ce site Web.
+                        <br>
+                        {% endblock %}
+                        Version actuelle : gesip-{{ build.version }} ({{ build.date }})
+                    </div>
+                </div>
+            </div> #}
+        </footer>
+
+        {% block body %}
+            {% for flashError in app.flashes('success') %}
+                <div class="alert alert alert-success" role="alert">{{ flashError }}</div>
+            {% endfor %}
+        <h1 class="text-center" style="background-color: #d16c89;">Base d'accueil d'Intrasso </h1>
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+            <script src="{{ asset('assets/js/test.js') }}"></script>
+            <script src="{{ asset('assets/js/app.js') }}"></script>
+            <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+            <script src="{{ asset('assets/js/utils/messages-toast.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

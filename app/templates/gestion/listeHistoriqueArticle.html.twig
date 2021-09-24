@@ -1,0 +1,47 @@
+{% extends 'base.menu.html.twig' %}
+
+{% block title %}
+Historique article 
+{% endblock %}
+
+{% block contenu %}
+        <div class="form-group row">
+            <h5 class="form-group col-10">Historique de l'article <b>{{ ligneHistoriqueArticle[0].article[0].titre }}</b></h5>
+        </div>
+
+    <!--Annulation-->
+    <div class="form-group row" role="toolbar">
+        <div class="col-12">
+            <div class="col-3">
+                <a href="javascript:history.back();" type="button" class="btn btn-secondary">Retour arrière</a>
+            </div>
+        </div>    
+    </div>
+    {# Tableau des résultats #}
+    <div class="page-list">
+        <table id="tableau-resultats" class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Adhérent</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for historique in ligneHistoriqueArticle %}
+                <tr>
+                    <td>{{ historique.dateAction|date('Y-m-d', 'Europe/Paris') }}</td>
+                    <td>{{ historique.action }}</td>
+                    <td>{{ historique.adherent[0].nomCompletCourt}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/form.js') }}"></script>
+    <script src="{{ asset('assets/js/historiqueArticle/listing.js') }}" type="text/javascript"></script>
+{% endblock %}

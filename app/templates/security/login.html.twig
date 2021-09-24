@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Connexion a Intrasso
+{% endblock %}
+
+{% block body %}
+{% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    {% for flashError in app.flashes('errors') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    {% for flashError in app.flashes('success') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    {% for flashError in app.flashes('info') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+<div style="background-color: #d16c89;">
+    
+    <!--Logo-->
+    <div class="col-12 text-center">
+        <img width="150"  style="width: 150px;" src="{{ asset('assets/img/intrasso.png') }}" />
+    </div>
+        
+    <form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <h1 class="container text-center col-6 h3 font-weight-normal"><br>Connexion à Intrasso<br><br></h1>
+
+    <!--Formulaire--> 
+    <div class="container left-center col-6">
+        <form method="post" class="login-form">
+            
+            <!--Courriel-->
+            <div class="form-group row">
+                <label class="col-4 col-form-label" for="form_label">Courriel :</label>
+                <div class="">
+                    <div class="position-relative">
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                    </div>
+                </div>
+            </div>
+
+            <!--Mot de passe-->
+            <div class="form-group row">
+                <label class="col-4 col-form-label" for="form_motdepasse">Mot de passe :</label>
+                    <div class="position-relative">
+                        <input type="password" id="form_motdepasse" name="password" class="form-control" />
+                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    </div>
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+            
+            <!--Bouton connexion-->
+            <div class="text-center">
+                <div>
+                     <a href="{{ path('gestion-adherent-creer') }}" type="button" class="btn btn-secondary">Inscription</a>
+                    <button class="btn btn-primary" type="submit">Connexion</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+    {# <label for="inputEmail">Courriel</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control col-4" required autofocus>
+    <label for="inputPassword">Mot de passe</label>
+    <input type="password" name="password" id="inputPassword" class="form-control col-4" required>
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    > #}
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}    
+{# </form> #}
