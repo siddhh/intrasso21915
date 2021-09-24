@@ -13,10 +13,6 @@ use Doctrine\ORM\Query\AST\Functions\FunctionNode;
  */
 class JsonContains extends FunctionNode
 {
-<<<<<<< HEAD
-=======
-
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     public $firstExpression = null;
     public $secondExpression = null;
 

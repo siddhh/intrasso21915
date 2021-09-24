@@ -1,8 +1,5 @@
 <?php
-<<<<<<< HEAD
 
-=======
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 namespace RestoBundle;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -29,8 +26,4 @@ class ImageUpload
     {
         return $this->targetDir;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b

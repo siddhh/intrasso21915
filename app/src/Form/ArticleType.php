@@ -28,7 +28,6 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add(
-<<<<<<< HEAD
                 'image',
                 FileType::class,
                 [
@@ -36,12 +35,6 @@ class ArticleType extends AbstractType
                     'data_class' => null
                 ]
             )
-=======
-                'image', FileType::class, [
-                    'required' => false,
-                    'data_class' => null
-                ])
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
             ->add('natures', EntityType::class, [
                 'class' => Nature::class,
@@ -58,15 +51,10 @@ class ArticleType extends AbstractType
                     ;
                 }
             ])
-<<<<<<< HEAD
             ->add(
                 'genresBis',
                 EntityType::class,
                 [
-=======
-            ->add('genresBis',
-                EntityType::class, [
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
                 'class' => Genre::class,
                 'placeholder' => '',
                 'choice_label' => 'label',
@@ -75,17 +63,11 @@ class ArticleType extends AbstractType
                 'required' => false,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('g')
-<<<<<<< HEAD
                     ->orderBy('UPPER(g.label)', 'ASC');
                     ;
                 }
             ]
             )
-=======
-                    ->orderBy('UPPER(g.label)', 'ASC');                    ;
-                }
-            ])
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             ->add('titre', TextType::class, [
                 'required' => true,
             ])

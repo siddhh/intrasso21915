@@ -27,11 +27,7 @@ class ArticleController extends AbstractController
     /** @var Service */
     private $serviceCourant;
 
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
      * Constructeur de la commande.
      * Permet notamment de récupérer dépendances
@@ -42,18 +38,10 @@ class ArticleController extends AbstractController
     public function __construct(
         EntityManagerInterface $entityManager,
         Security $security
-<<<<<<< HEAD
     ) {
         $this->entityManager = $entityManager;
         $this->serviceCourant = $security->getUser();
     }
-=======
-       
-        ) {
-            $this->entityManager = $entityManager;
-            $this->serviceCourant = $security->getUser();
-        }
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
  * @Route("/gestion/listeArticles", name="gestion-listeArticles")
@@ -65,11 +53,7 @@ class ArticleController extends AbstractController
         return $this->render('gestion/listeArticles.html.twig', [
             'form' => $form->createView()
         ]);
-<<<<<<< HEAD
     }
-=======
-    } 
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
      * @Route("/gestion/article/creer", name="gestion-article-creer")
@@ -81,10 +65,6 @@ class ArticleController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-<<<<<<< HEAD
-=======
-            
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             if ($article->getImage() !== null) {
                 $file = $form->get('image')->getData();
                 $fileName =  uniqid(). '.' .$file->guessExtension();
@@ -104,11 +84,7 @@ class ArticleController extends AbstractController
             //$entityManager = $this->getDoctrine()->getManager();
             $this->entityManager->persist($article);
             $this->entityManager->flush();
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             //historisation
             $historiqueArticle = new HistoriqueArticle();
             $historiqueArticle->addAdherent($this->serviceCourant);
@@ -117,21 +93,12 @@ class ArticleController extends AbstractController
             $historiqueArticle->setAction("Ajout");
             $this->entityManager->persist($historiqueArticle);
             $this->entityManager->flush();
-<<<<<<< HEAD
 
             $this->addFlash(
                 'success',
                 "Article {$article->getTitre()} ajouté."
             );
 
-=======
-            
-            $this->addFlash(
-                 'success',
-                 "Article {$article->getTitre()} ajouté."
-            ); 
-           
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             return $this->redirectToRoute('gestion-article-creer');
         }
 
@@ -205,11 +172,7 @@ class ArticleController extends AbstractController
     {
         $dateCourante = new \DateTime();
         $form = $this->createForm(ArticleType::class, $article);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         // récupère les paramètres fournis par l article
         $form->handleRequest($request);
         $article = $form->getData();
@@ -217,21 +180,13 @@ class ArticleController extends AbstractController
         $article->setEstEmprunte(false);
         $article->setDateRestitution(null);
         $this->entityManager->persist($article);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         //adhérent
         $adherent = $this->getDoctrine()->getRepository(User::class)->nbreEmpruntEnCours($this->serviceCourant->getId());
         $nbreEmpruntEnCours = $adherent[0]->getNbreEmpruntEnCours();
         $adherent[0]->setNbreEmpruntEnCours($nbreEmpruntEnCours-1);
         $this->entityManager->persist($adherent[0]);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         //historisation
         $historiqueArticle = new HistoriqueArticle();
         $historiqueArticle->addAdherent($this->serviceCourant);
@@ -239,23 +194,14 @@ class ArticleController extends AbstractController
         $historiqueArticle->setDateAction($dateCourante);
         $historiqueArticle->setAction("Restituer");
         $this->entityManager->persist($historiqueArticle);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         $this->entityManager->flush();
         $this->addFlash(
             'success',
             "L'article {$article->getTitre()} a bien été restitué."
         );
-<<<<<<< HEAD
         // redirige vers la liste des articles
         return $this->redirectToRoute('gestion-listeArticles');
-=======
-            // redirige vers la liste des articles
-            return $this->redirectToRoute('gestion-listeArticles');
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     }
 
     /**
@@ -267,11 +213,7 @@ class ArticleController extends AbstractController
         $dateCourante = new \DateTime();
         $dateLimiteRestitution = (new \DateTime('now'))->add(new \DateInterval('P90D'))->setTime(0, 0, 0);
         $form = $this->createForm(ArticleType::class, $article);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         //article
         $form->handleRequest($request);
         $article = $form->getData();
@@ -279,21 +221,13 @@ class ArticleController extends AbstractController
         $article->setEstEmprunte(true);
         $article->setDateRestitution($dateLimiteRestitution);
         $this->entityManager->persist($article);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         //adhérent
         $adherent = $this->getDoctrine()->getRepository(User::class)->nbreEmpruntEnCours($this->serviceCourant->getId());
         $nbreEmpruntEnCours = $adherent[0]->getNbreEmpruntEnCours();
         $adherent[0]->setNbreEmpruntEnCours($nbreEmpruntEnCours+1);
         $this->entityManager->persist($adherent[0]);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         //historisation
         $historiqueArticle = new HistoriqueArticle();
         $historiqueArticle->addAdherent($this->serviceCourant);
@@ -308,11 +242,7 @@ class ArticleController extends AbstractController
             'success',
             "L'article {$article->getTitre()} a bien été emprunté."
         );
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         return $this->redirectToRoute('gestion-listeArticles');
     }
 }

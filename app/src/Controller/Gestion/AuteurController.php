@@ -21,11 +21,7 @@ class AuteurController extends AbstractController
     /** @var EntityManagerInterface  */
     private $em;
 
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
      * Constructeur de la commande.
      * Permet notamment de récupérer dépendances
@@ -34,16 +30,9 @@ class AuteurController extends AbstractController
 
     public function __construct(
         EntityManagerInterface $em
-<<<<<<< HEAD
     ) {
         $this->em = $em;
     }
-=======
-       
-        ) {
-            $this->em = $em;
-        }
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
      * @Route("/gestion/listeAuteurs", name="gestion-listeAuteurs")
@@ -55,21 +44,13 @@ class AuteurController extends AbstractController
         return $this->render('gestion/listeAuteurs.html.twig', [
             'form' => $form->createView()
         ]);
-<<<<<<< HEAD
     }
-=======
-    } 
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
      * @Route("/gestion/auteur/creer", name="gestion-auteur-creer")
      */
     public function creerAuteur(Request $request): Response
     {
-<<<<<<< HEAD
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         $auteur = new Auteur();
         $form = $this->createForm(AuteurType::class, $auteur);
         $form->handleRequest($request);
@@ -77,21 +58,12 @@ class AuteurController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($auteur);
             $em->flush();
-<<<<<<< HEAD
 
             $this->addFlash(
                 'success',
                 "L'auteur {$auteur->getPrenom()} {$auteur->getNom()} a été ajouté."
             );
 
-=======
-            
-            $this->addFlash(
-                 'success',
-                 "L'auteur {$auteur->getPrenom()} {$auteur->getNom()} a été ajouté."
-            ); 
-           
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             return $this->redirectToRoute('gestion-auteur-creer');
         }
 
@@ -106,12 +78,6 @@ class AuteurController extends AbstractController
      //public function modifierAuteur(Request $request, User $auteur, ?UserInterface $userConnecte): Response
     //{
 
-<<<<<<< HEAD
 
     //}
-=======
-    
-    //}
-    
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 }

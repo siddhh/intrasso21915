@@ -36,11 +36,7 @@ class RegistrationController extends AbstractController
     //     return $this->render('registration/listeAdherents.html.twig', [
     //         'form' => $form->createView()
     //     ]);
-<<<<<<< HEAD
     // }
-=======
-    // } 
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
      * @Route("/register", name="app_register")
@@ -55,11 +51,7 @@ class RegistrationController extends AbstractController
     //     $form = $this->createForm(RegistrationFormType::class, $user);
     //     $form->handleRequest($request);
     //     if ($form->isSubmitted() && $form->isValid()) {
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     //         // encode the plain password
     //         $user->setPassword(
     //             $passwordEncoder->encodePassword(
@@ -71,22 +63,13 @@ class RegistrationController extends AbstractController
     //         $entityManager = $this->getDoctrine()->getManager();
     //         $entityManager->persist($user);
     //         $entityManager->flush();
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     //         $this->addFlash(
     //             'info',
     //             "Email de validation envoyé à l'utilisateur."
     //         );
-<<<<<<< HEAD
 
     //         // Génére une URL signée et l'envoyer par e-mail à l'utilisateur
-=======
-            
-    //         // Génére une URL signée et l'envoyer par e-mail à l'utilisateur 
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     //         $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
     //             (new TemplatedEmail())
     //                 ->from(new Address('sid@dis.com', 'sid'))
@@ -94,11 +77,7 @@ class RegistrationController extends AbstractController
     //                 ->subject('Merci de confirmer cet email')
     //                 ->htmlTemplate('registration/confirmation_email.html.twig')
     //         );
-<<<<<<< HEAD
     //         // Faites tout ce dont vous avez besoin ici, comme envoyer un e-mail
-=======
-    //         // Faites tout ce dont vous avez besoin ici, comme envoyer un e-mail 
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     //         return $this->render('enAttenteConfirmationMail.html.twig');
     //     }
@@ -125,11 +104,7 @@ class RegistrationController extends AbstractController
     //             'success',
     //             "L'adhérent' {$adherent->getEmail()} a bien été modifié."
     //         );
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     //         return $this->redirectToRoute('gestion-pilotes-liste');
     //     }
     //     // Retourne la page web
@@ -144,11 +119,7 @@ class RegistrationController extends AbstractController
      */
     // public function verifyUserEmail(Request $request): Response
     // {
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     //     $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
     //     // validate email confirmation link, sets User::isVerified=true and persists

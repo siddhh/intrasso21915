@@ -20,11 +20,7 @@ class HistoriqueArticleController extends AbstractController
 {
     /** @var EntityManagerInterface  */
     private $em;
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
      * Constructeur de la commande.
      * Permet notamment de récupérer dépendances
@@ -33,16 +29,9 @@ class HistoriqueArticleController extends AbstractController
 
     public function __construct(
         EntityManagerInterface $em
-<<<<<<< HEAD
     ) {
         $this->em = $em;
     }
-=======
-       
-        ) {
-            $this->em = $em;
-        }
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
      * @Route("/gestion/ListeHistorique/{article}", name="gestion-ListeHistoriqueArticle")

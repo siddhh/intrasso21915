@@ -47,11 +47,7 @@ class GenreRepository extends ServiceEntityRepository
         ;
     }
     */
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
     * recherche la liste des id genres associés à une nature données
     * @return Genre[]
@@ -68,16 +64,6 @@ class GenreRepository extends ServiceEntityRepository
             ->getResult()
         ;
 
-<<<<<<< HEAD
         return $query;
     }
-=======
-        return $query;   
-    }
-
-
-
-
-
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 }

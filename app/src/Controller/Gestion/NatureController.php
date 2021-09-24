@@ -20,11 +20,7 @@ class NatureController extends AbstractController
     /** @var EntityManagerInterface  */
     private $em;
 
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
      * Constructeur de la commande.
      * Permet notamment de récupérer dépendances
@@ -33,16 +29,9 @@ class NatureController extends AbstractController
 
     public function __construct(
         EntityManagerInterface $em
-<<<<<<< HEAD
     ) {
         $this->em = $em;
     }
-=======
-       
-        ) {
-            $this->em = $em;
-        }
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
      * @Route("/gestion/listeNatures", name="gestion-listeNatures")
@@ -54,21 +43,13 @@ class NatureController extends AbstractController
         return $this->render('gestion/listeNatures.html.twig', [
             'form' => $form->createView()
         ]);
-<<<<<<< HEAD
     }
-=======
-    } 
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
     /**
      * @Route("/gestion/nature/creer", name="gestion-nature-creer")
      */
     public function creerNature(Request $request): Response
     {
-<<<<<<< HEAD
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         $nature = new Nature();
         $form = $this->createForm(NatureType::class, $nature);
         $form->handleRequest($request);
@@ -76,21 +57,12 @@ class NatureController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($nature);
             $em->flush();
-<<<<<<< HEAD
 
             $this->addFlash(
                 'success',
                 "la nature {$nature->getLabel()} ajouté."
             );
 
-=======
-            
-            $this->addFlash(
-                 'success',
-                 "la nature {$nature->getLabel()} ajouté."
-            ); 
-            
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             return $this->redirectToRoute('accueil');
         }
 

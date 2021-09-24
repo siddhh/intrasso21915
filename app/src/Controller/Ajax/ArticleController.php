@@ -11,10 +11,6 @@ use App\Entity\HistoriqueArticle;
 
 class ArticleController extends AbstractController
 {
-<<<<<<< HEAD
-=======
-
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
      * @Route(
      *      "/ajax/article/recherche",
@@ -26,32 +22,19 @@ class ArticleController extends AbstractController
     {
         $naturesLibelles = [];
         $genresLibelles = [];
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         $tableauRecherche = [
             'titre'                 => $request->get('Titre'),
             'natures'               => $request->get('Natures'),
             'genre'                 => $request->get('Genre'),
             'auteur'                => $request->get('Auteur'),
             'langage'               => $request->get('Langage'),
-<<<<<<< HEAD
             'estEmprunte'           => $request->get('estEmprunte'),
         ];
         $resultat = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAll();
         //->listeArticlesCriteres($tableauRecherche);
-=======
-            'estEmprunte'           => $request->get('estEmprunte'),  
-        ];
-            $resultat = $this->getDoctrine()
-            ->getRepository(Article::class)
-            ->findAll();
-            //->listeArticlesCriteres($tableauRecherche);
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
         $reponse = [
             'donnees'   => []
@@ -95,15 +78,9 @@ class ArticleController extends AbstractController
                 'emprunteur'            => $nomEmprunteur,
                 'dateRestitution'       => $dateRestitution,
             ];
-<<<<<<< HEAD
 
             $reponse['donnees'][] = $retArticle;
             $naturesLibelles = [];
-=======
-            
-            $reponse['donnees'][] = $retArticle;
-            $naturesLibelles = []; 
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             $genresLibelles = [];
             $auteursLibelles = [];
             $langagesLibelles = [];
@@ -123,21 +100,12 @@ class ArticleController extends AbstractController
     {
         $reponse = [];
         $adherentCourant = $this->getUser()->GetId();
-<<<<<<< HEAD
 
         $resultat = $this->getDoctrine()
         ->getRepository(Article::class)
         ->listeArticlesEmpruntes($adherentCourant);
 
 
-=======
-        
-        $resultat = $this->getDoctrine()
-        ->getRepository(Article::class)
-        ->listeArticlesEmpruntes($adherentCourant);
-        
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 
         foreach ($resultat as $article) {
             foreach ($article->getNatures() as $natures) {
@@ -156,11 +124,7 @@ class ArticleController extends AbstractController
         }
 
         //dd($reponse, $resultat);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         return new JsonResponse($reponse);
     }
 }

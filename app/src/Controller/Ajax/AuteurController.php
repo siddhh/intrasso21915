@@ -10,10 +10,6 @@ use App\Entity\Auteur;
 
 class AuteurController extends AbstractController
 {
-<<<<<<< HEAD
-=======
-
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
     /**
      * @Route(
      *      "/ajax/auteur/recherche",
@@ -30,10 +26,6 @@ class AuteurController extends AbstractController
         ->listeAuteurs($vueChoisie);
 
         foreach ($resultat as $auteur) {
-<<<<<<< HEAD
-=======
-            
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             if ($auteur->getPrenom()) {
                 $prenom = $auteur->getPrenom();
             } else {
@@ -45,11 +37,7 @@ class AuteurController extends AbstractController
             } else {
                 $dateSuppression = "-";
             }
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
             $reponse[] = [
                 'id'                => $auteur->getId(),
                 'prenom'            => $prenom,
@@ -57,11 +45,7 @@ class AuteurController extends AbstractController
                 'dateSuppression'   => $dateSuppression,
             ];
         }
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
         return new JsonResponse($reponse);
     }
 
@@ -90,17 +74,8 @@ class AuteurController extends AbstractController
         }
         $entityManager->flush();
 
-<<<<<<< HEAD
 
         return new JsonResponse(['statut' => 'OK']);
         ;
     }
-=======
-        
-        return new JsonResponse(['statut' => 'OK']);;
-    }
-
-
-
->>>>>>> e07df1b42cd2f756d7dd6991eeab3e1c70e30a8b
 }
