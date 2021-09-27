@@ -1,0 +1,13 @@
+{% extends 'emails/base.text.twig' %}
+
+{% block titre %}Activation de votre compte INTRASSO :{% endblock %}
+
+{% block contenu %}
+{% autoescape false %}
+
+Bonjour
+    L'article  {{ article.titre }} que vous avez emprunté devait être restitué le {{ article.dateRestitution|date('Y-m-d', 'Europe/Paris') }}:
+    Merci de le restituer dans les meilleurs délais.
+    
+{% endautoescape %}
+{% endblock %}

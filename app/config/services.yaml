@@ -8,7 +8,6 @@ parameters:
     dme_url: '%env(resolve:DME_URL)%'
     noreply_mail: '%env(NOREPLY_MAIL)%'
     noreply_mail_label: '%env(NOREPLY_MAIL_LABEL)%'
-    locale: en
     carte_identite_directory: '%env(default:default_carte_identite_directory:CARTE_IDENTITE_DIRECTORY)%'
     default_carte_identite_directory: '/carte-identite'
     image_directory: '%env(default:default_image_directory:IMAGE_DIRECTORY)%'
@@ -41,3 +40,7 @@ services:
     resto.image_uploader:
         class: RestoBundle\ImageUpload
         arguments: ['%images_directory%']
+
+    App\Command\Cron\EmailRetardCommand:
+        $noreply_mail: '%env(NOREPLY_MAIL)%'
+        $noreply_mail_label: '%env(NOREPLY_MAIL_LABEL)%'

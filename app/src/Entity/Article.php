@@ -108,6 +108,16 @@ class Article
      */
     private $historiqueArticles;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articleUser")
+     */
+    private $reservePar;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ArticleStatus::class, inversedBy="articles")
+     */
+    private $status;
+
     public function __construct()
     {
         $this->langages = new ArrayCollection();
@@ -397,6 +407,30 @@ class Article
         if ($this->historiqueArticles->removeElement($historiqueArticle)) {
             $historiqueArticle->removeArticle($this);
         }
+
+        return $this;
+    }
+
+    public function getReservePar(): ?User
+    {
+        return $this->reservePar;
+    }
+
+    public function setReservePar(?User $reservePar): self
+    {
+        $this->reservePar = $reservePar;
+
+        return $this;
+    }
+
+    public function getStatus(): ?ArticleStatus
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?ArticleStatus $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
