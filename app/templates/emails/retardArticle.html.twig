@@ -1,0 +1,31 @@
+{% extends 'emails/base.html.twig' %}
+
+{% block titre %} Activation de votre compte INTRASSO :{% endblock %}
+
+{% block contenu %}
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td width="600" style="width: 600px;">
+                        <table class="email-interieur">
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Bonjour</p>
+                                    <p>L'article  {{ article.titre }} que vous avez emprunté devait être restitué le <b>{{ article.dateRestitution|date('Y-m-d', 'Europe/Paris') }}</b>:<br />
+                                    <p>Merci de le restituer dans les meilleurs délais.</p>
+                                    <a href="{{ lienIntrasso }}">Se connecter à INTRASSO</a></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+{% endblock %}

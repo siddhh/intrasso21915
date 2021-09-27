@@ -49,6 +49,25 @@ class ArticleRepository extends ServiceEntityRepository
         // return $query->getResult();
     }
 
+    
+    /**
+    *  Retourne la liste des articles empruntés
+    * @return Article[]
+    */
+
+    public function getArticlesEnRetard(): array
+    {
+        $idStatus = 4;
+        $query = $this->createQueryBuilder('a');
+        $query
+            ->where('a.status = :idStatus')
+            ->setParameter('idStatus', $idStatus)
+            ;
+        return $query->getQuery()->getResult();
+    }
+
+
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */

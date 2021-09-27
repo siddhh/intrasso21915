@@ -93,11 +93,17 @@ class User implements UserInterface
      */
     private $dateSuppression;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="reservePar")
+     */
+    private $articleStatus;
+
     public function __construct()
     {
         //$this->listeObjets = new ArrayCollection();
         $this->articles = new ArrayCollection();
         $this->historiqueArticles = new ArrayCollection();
+        $this->articleStatus = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -375,6 +381,36 @@ class User implements UserInterface
     public function setDateSuppression(?\DateTimeInterface $dateSuppression): self
     {
         $this->dateSuppression = $dateSuppression;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticleStatus(): Collection
+    {
+        return $this->articleStatus;
+    }
+
+    public function addArticleStatus(Article $articleStatus): self
+    {
+        if (!$this->articleStatus->contains($articleStatus)) {
+            $this->articleStatus[] = $articleStatus;
+            $articleStatus->setReservePar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticleStatus(Article $articleStatus): self
+    {
+        if ($this->articleStatus->removeElement($articleStatus)) {
+            // set the owning side to null (unless already changed)
+            if ($articleStatus->getReservePar() === $this) {
+                $articleStatus->setReservePar(null);
+            }
+        }
 
         return $this;
     }
