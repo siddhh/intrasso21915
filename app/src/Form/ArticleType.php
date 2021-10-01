@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\ArticleStatus;
 use App\Entity\Langage;
 use App\Entity\Auteur;
 use App\Entity\Nature;
@@ -35,6 +36,35 @@ class ArticleType extends AbstractType
                     'data_class' => null
                 ]
             )
+
+            ->add('status', EntityType::class, [
+                'class' => ArticleStatus::class,
+                'placeholder' => '',
+                'choice_label' => 'label',
+                'disabled' => true,
+                'multiple' => false,
+                'expanded' => false,
+                'required' => false,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('a')
+                    ;
+                }
+            ])
+
+            ->add('reservePar', EntityType::class, [
+                'class' => User::class,
+                'placeholder' => '',
+                'choice_label' => 'nomCompletCourt',
+                'multiple' => false,
+                'translation_domain' => 'Default',
+                'expanded' => false,
+                'required' => true,
+                'disabled' => true,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ;
+                }
+            ])
 
             ->add('natures', EntityType::class, [
                 'class' => Nature::class,

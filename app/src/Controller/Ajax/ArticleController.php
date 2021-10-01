@@ -63,12 +63,19 @@ class ArticleController extends AbstractController
             } else {
                 $dateRestitution = "-";
             }
+            if ($article->getReservePar()) {
+                $reservePar = $article->getReservePar()->getNomCompletCourt();
+            } else {
+                $reservePar = "-";
+            }
 
             $retArticle = [
 
                 'image'                 => $article->getImage(),
                 'id'                    => $article->getId(),
                 'titre'                 => $article->getTitre(),
+                'statusLabel'           => $article->getStatus()->getLabel(),
+                'statusId'              => $article->getStatus()->getId(),
                 'natures'               => $naturesLibelles,
                 'genres'                => $genresLibelles,
                 'auteurs'               => $auteursLibelles,
@@ -77,6 +84,7 @@ class ArticleController extends AbstractController
                 'estEmprunte'           => $article->getEstEmprunte(),
                 'emprunteur'            => $nomEmprunteur,
                 'dateRestitution'       => $dateRestitution,
+                'reservePar'            => $reservePar,                
             ];
 
             $reponse['donnees'][] = $retArticle;
