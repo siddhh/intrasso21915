@@ -38,6 +38,16 @@ Incription article Intrasso
                             {{form_widget(form.image)}}
                         </div>
                     </div>
+
+                    <div class="form-group row" id="status">
+                        {{ form_label(form.status, 'Status', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.status.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{ form_widget(form.status, {'attr': {'class': 'form-control ' ~ (form.status.vars.valid ? '' : 'form-control-error')}}) }}
+                            <div class="form-errors">
+                                {{ form_errors(form.status) }}
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="form-group row" id="natures">
                         {{ form_label(form.natures, 'Natures', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.natures.vars.valid ? '' : 'form-label-error') }}) }}
@@ -124,6 +134,16 @@ Incription article Intrasso
                         </div>
                     </div>
 
+                    <div class="form-group row" id="reservePar">
+                        {{ form_label(form.reservePar, 'Réserver par', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.reservePar.vars.valid ? '' : 'form-label-error') }}) }}
+                        <div class="col-8">
+                            {{ form_widget(form.reservePar, {'attr': {'class': 'form-control ' ~ (form.reservePar.vars.valid ? '' : 'form-control-error')}}) }}
+                            <div class="form-errors">
+                                {{ form_errors(form.reservePar) }}
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group row" id="dateRestitution" {% if not article is defined or article.estEmprunte == false %} style="display:none;"{% endif %}>
                         {{ form_label(form.dateRestitution, 'Date restitution', {'label_attr': {'class': 'col-2 col-form-label ' ~ (form.dateRestitution.vars.valid ? '' : 'form-label-error') }}) }}
                         <div class="col-8">
@@ -151,20 +171,27 @@ Incription article Intrasso
                             </div>
                             {% endif %}
 
-                            <!--Restituer-->
-                            {% if article is defined %}
+                            <!--Historique-->
+                            {% if article is defined and article.estEmprunte == true %}
                             <div class="col-3">
                                 <a href="{{ path('gestion-ListeHistoriqueArticle', {article: article.id }) }}" type="button" class="btn btn-info">Historique</a>
                             </div>
                             {% endif %}
 
                             <!--Emprunter-->
-                            {% if article is defined and article.estEmprunte == false and app.user.nbrEmpruntPossible != app.user.nbreEmpruntEnCours %}
+                            {% if article is defined and article.estEmprunte != true and app.user.nbrEmpruntPossible != app.user.nbreEmpruntEnCours %}
                             <div class="col-3">
                                 <a href="{{ path('gestion-article-emprunter', {article: article.id }) }}" type="button" class="btn btn-warning">Emprunter</a>
                             </div>
                             {% endif %}
 
+                            <!--Réserver-->
+                            {% if article is defined and article.estEmprunte == true and article.reservePar == null %}
+                            <div class="col-3">
+                                <a href="{{ path('gestion-article-emprunter', {article: article.id }) }}" type="button" class="btn btn-danger">Réserver</a>
+                            </div>
+                            {% endif %}
+                            
                             <!--Enregistrer-->
                             {% if is_granted('ROLE_ADMIN') or not article is defined or ( article is defined and app.user == article.Proprietaire ) %}
                             <div class="col-3">

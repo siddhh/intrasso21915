@@ -24,15 +24,14 @@
                 '<td><img src="/assets/img/' + article.image + '" alt="Pochette" width="100"/>' + '</td>',
                 //'<td>' + article.image + '</td>',
                 '<td> <a href="/gestion/article/' + article.id + '/modifier">' + article.titre + '</a>' + '</td>',
-                '<td>' + article.natures + '</a></td>',
+                '<td>' + article.statusLabel + '</td>',
+                '<td>' + article.natures + '</td>',
                 '<td>' + article.genres + '</td>',
                 '<td>' + article.auteurs  + '</td>',
                 '<td>' + article.langages + '</td>',
                 '<td>' + article.proprietaire + '</td>',
-                '<td>' + (article.estEmprunte ? "<b>OUI</b>" : "<b style='color: black;'>NON</b>") + '</td>',
-                '<td>' + article.emprunteur + '</td>',
-                '<td>' + article.dateRestitution + '</td>',
-                '<td> <a href="/gestion/article/' + article.id + '/modifier" type="button" class="btn btn-warning">Emprunter</a>' + '</td>',
+                article.statusId == 1 ? '<td> <a href="/gestion/article/' + article.id + '/emprunter" type="button" class="btn btn-warning">Emprunter</a>' + '</td>' : "",
+                article.statusId == 2 && article.reservePar == "-" ? '<td> <a href="/gestion/article/' + article.id + '/reserver" type="button" class="btn btn-danger">Reserver</a>' + '</td>' : "",
             )
         );
     };

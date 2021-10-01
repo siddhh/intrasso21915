@@ -4,6 +4,7 @@ namespace App\Controller\Gestion;
 
 use App\Entity\Article;
 use App\Entity\User;
+use App\Entity\ArticleStatus;
 use App\Entity\HistoriqueArticle;
 use App\Form\ArticleType;
 use App\Form\RechercheArticleType;
@@ -62,6 +63,7 @@ class ArticleController extends AbstractController
     {
         $dateCourante = new \DateTime();
         $article = new Article();
+        $status = $this->getDoctrine()->getRepository(ArticleStatus::class)->recuperationStatus(1);
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -91,6 +93,7 @@ class ArticleController extends AbstractController
             $historiqueArticle->addArticle($article);
             $historiqueArticle->setDateAction($dateCourante);
             $historiqueArticle->setAction("Ajout");
+            $article->setStatus($status);
             $this->entityManager->persist($historiqueArticle);
             $this->entityManager->flush();
 
@@ -172,6 +175,7 @@ class ArticleController extends AbstractController
     {
         $dateCourante = new \DateTime();
         $form = $this->createForm(ArticleType::class, $article);
+        $status = $this->getDoctrine()->getRepository(ArticleStatus::class)->recuperationStatus(1);
 
         // récupère les paramètres fournis par l article
         $form->handleRequest($request);
@@ -179,6 +183,7 @@ class ArticleController extends AbstractController
         $article->setEmprunteur(null);
         $article->setEstEmprunte(false);
         $article->setDateRestitution(null);
+        $article->setStatus($status);
         $this->entityManager->persist($article);
 
         //adhérent
@@ -204,21 +209,24 @@ class ArticleController extends AbstractController
         return $this->redirectToRoute('gestion-listeArticles');
     }
 
-    /**
+
+        /**
      * @Route("/gestion/article/{article}/emprunter", name="gestion-article-emprunter")
-     * Permet d'emprunter un article existant
+     * Permet de modifier un article existant
      */
     public function emprunterArticle(Request $request, Article $article): Response
     {
         $dateCourante = new \DateTime();
         $dateLimiteRestitution = (new \DateTime('now'))->add(new \DateInterval('P90D'))->setTime(0, 0, 0);
         $form = $this->createForm(ArticleType::class, $article);
+        $status = $this->getDoctrine()->getRepository(ArticleStatus::class)->recuperationStatus(2);
 
-        //article
+        // récupère les paramètres fournis par l article
         $form->handleRequest($request);
         $article = $form->getData();
         $article->setEmprunteur($this->serviceCourant);
         $article->setEstEmprunte(true);
+        $article->setStatus($status);
         $article->setDateRestitution($dateLimiteRestitution);
         $this->entityManager->persist($article);
 
@@ -233,16 +241,55 @@ class ArticleController extends AbstractController
         $historiqueArticle->addAdherent($this->serviceCourant);
         $historiqueArticle->addArticle($article);
         $historiqueArticle->setDateAction($dateCourante);
-        $historiqueArticle->setAction("Emprunter");
+        $historiqueArticle->setAction("Emprunté");
+        $this->entityManager->persist($historiqueArticle);
+
+        $this->entityManager->flush();
+        $this->addFlash(
+            'success',
+            "L'article {$article->getTitre()} a bien été emprunté."
+        );
+        // redirige vers la liste des articles
+        return $this->redirectToRoute('gestion-listeArticles');
+    }
+
+
+
+
+
+    /**
+     * @Route("/gestion/article/{article}/reserver", name="gestion-article-reserver")
+     * Permet de réserver un article existant
+     */
+    public function reserverArticle(Request $request, Article $article): Response
+    {
+        $dateCourante = new \DateTime();
+        $dateLimiteRestitution = (new \DateTime('now'))->add(new \DateInterval('P90D'))->setTime(0, 0, 0);
+        $form = $this->createForm(ArticleType::class, $article);
+
+        //article
+        $form->handleRequest($request);
+        $article = $form->getData();
+        $article->setReservePar($this->serviceCourant);
+        $this->entityManager->persist($article);
+
+        //historisation
+        $historiqueArticle = new HistoriqueArticle();
+        $historiqueArticle->addAdherent($this->serviceCourant);
+        $historiqueArticle->addArticle($article);
+        $historiqueArticle->setDateAction($dateCourante);
+        $historiqueArticle->setAction("Reserver");
         $this->entityManager->persist($historiqueArticle);
         $this->entityManager->flush();
 
         //message flash
         $this->addFlash(
             'success',
-            "L'article {$article->getTitre()} a bien été emprunté."
+            "L'article {$article->getTitre()} a bien été réservé."
         );
 
         return $this->redirectToRoute('gestion-listeArticles');
     }
+
+    
 }
